@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/formato.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/logo.png">
+
+  <title>Formato</title>
+</head>
+<body>
+  <!-- inicio del navbar -->
+
+  <nav class="navbar navbar-expand-md ">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Mapa">Mapa en Vivo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Ticket">Crear Ticket</a>
+        </li>
+        <% if(user.puesto.includes("Director")) {%>
+        <li class="nav-item">
+          <a class="nav-link" href="/Mercancias">Reporte de Negocio</a>
+        </li>
+        <% } %>
+
+      </ul>
+    </div>
+    <div class="mx-auto order-0">
+      <a class="navbar-brand mx-auto" href="/"><img id="logo" src="../images/logo2.png" height="50" width="150"></a>
+      <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Salir</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- fin del navbar -->
+
+
+
+  <div class="container-fluid content">
+    <div class="row">
+      <div class="col-lg-3">
+        <h2><%= resultado.cliente.NOMBRE%></h2>
+        <h5>  <%= resultado.cliente.DIRECCION%></h3>
+          <iframe  width="250" height="200" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyBFgZGsI4z8ofxPBUqWTg7ee9NrJ3XQl54&center=<%=resultado.cliente.LATITUD%>,<%=resultado.cliente.LONGITUD%>&zoom=11" allowfullscreen>
+          </iframe>
+          <h4>Llévame al cliente:<a class="text-center" target="_blank" rel="noopener noreferrer" href="https://maps.google.com/?q=<%=resultado.cliente.LATITUD%>,<%=resultado.cliente.LONGITUD%>"><img src="/images/maps.png" height="30px" width="30px"></a></h4>
+          <h4>Contacto: <%=resultado.cliente.NOMBRECONTACTO%></h4>
+          <h4>Teléfono: +52<%=resultado.cliente.TELEFONO%></h4>
+        </div>
+        <div class="col-lg-9">
+          <h3>Formato de Revisión</h3>
+          <div id="informacion_completa" hidden><%= JSON.stringify(resultado) %></div>
+
+          <form>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Formato</label>
+              <input type="email" class="form-control" id="IDFORMATO" value="<%=resultado.formato[0].IDFORMATO%>" disabled>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Supervisor</label>
+              <input type="email" class="form-control" id="USERNAME" value="<%=resultado.usuario.username%>" disabled>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Accesos</label>
+              <select multiple class="form-control" id="ACCESOS">
+                <% switch(resultado.formato[0].ACCESOS){
+                case "BRECHA": %>
+                <option selected>BRECHA</option>
+                <option>TERRACERÍA</option>
+                <option>LADERO</option>
+                <option>ASFALTO</option>
+                <% break;
+                case "TERRACERIA": %>
+                <option>BRECHA</option>
+                <option selected>TERRACERÍA</option>
+                <option>LADERO</option>
+                <option>ASFALTO</option>
+                <% break;
+                case "LADERO":%>
+                <option>BRECHA</option>
+                <option>TERRACERÍA</option>
+                <option selected>LADERO</option>
+                <option>ASFALTO</option>
+                <% break;
+                case "ASFALTO":%>
+                <option>BRECHA</option>
+                <option>TERRACERÍA</option>
+                <option>LADERO</option>
+                <option selected>ASFALTO</option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Servicios</label>
+              <select class="form-control" id="SERVICIOS">
+                <% switch(resultado.formato[0].SERVICIOS){
+                case "SI AGUA": %>
+                <option selected>SI AGUA</option>
+                <option>NO AGUA</option>
+                <% break;
+                case "NO AGUA": %>
+                <option>SI AGUA</option>
+                <option selected>NO AGUA</option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Personal Ajeno</label>
+              <select class="form-control" id="PERSONALAJENO">
+                <% switch(resultado.formato[0].PERSONALAJENO){
+                case "SI": %>
+                <option selected>SI</option>
+                <option>NO</option>
+                <% break;
+                case "NO": %>
+                <option>SI</option>
+                <option selected>NO</option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Climas</label>
+              <select multiple class="form-control" id="CLIMAS">
+                <% switch(resultado.formato[0].CLIMAS){
+                case "HUMEDO": %>
+                <option selected>HUMEDO</option>
+                <option>SECO</option>
+                <option>TEMPLADO</option>
+                <option>FRIO</option>
+                <% break;
+                case "SECO": %>
+                <option>HUMEDO</option>
+                <option selected>SECO</option>
+                <option>TEMPLADO</option>
+                <option>FRIO</option>
+                <% break;
+                case "TEMPLADO":%>
+                <option>HUMEDO</option>
+                <option>SECO</option>
+                <option selected>TEMPLADO</option>
+                <option>FRIO</option>
+                <% break;
+                case "FRIO":%>
+                <option>HUMEDO</option>
+                <option>SECO</option>
+                <option>TEMPLADO</option>
+                <option selected>FRIO</option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Limpieza</label>
+              <select multiple class="form-control" id="LIMPIEZA">
+                <% switch(resultado.formato[0].LIMPIEZA){
+                case "MUY BUENA": %>
+                <option selected>MUY BUENA</option>
+                <option>BUENA</option>
+                <option>REGULAR</option>
+                <option>DEFICIENTE</option>
+                <% break;
+                case "BUENA": %>
+                <option>MUY BUENA</option>
+                <option selected>BUENA</option>
+                <option>REGULAR</option>
+                <option>DEFICIENTE</option>
+                <% break;
+                case "REGULAR":%>
+                <option>MUY BUENA</option>
+                <option>BUENA</option>
+                <option selected>REGULAR</option>
+                <option>DEFICIENTE</option>
+                <% break;
+                case "DEFICIENTE":%>
+                <option>MUY BUENA</option>
+                <option>BUENA</option>
+                <option>REGULAR</option>
+                <option selected>DEFICIENTE</option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Material</label>
+              <select class="form-control" id="MATERIAL">
+                <% switch(resultado.formato[0].MATERIAL){
+                case "MAIZ": %>
+                <option selected>MAIZ</option>
+                <option>TOMATE</option>
+                <option>CAMIONES</option>
+                <option>NARANJA</option>
+                <option>TIENDAS</option>
+                <% break;
+                case "TOMATE": %>
+                <option>MAIZ</option>
+                <option selected>TOMATE</option>
+                <option>CAMIONES</option>
+                <option>NARANJA</option>
+                <option>TIENDAS</option>
+                <% break;
+                case "CAMIONES":%>
+                <option>MAIZ</option>
+                <option>TOMATE</option>
+                <option selected>CAMIONES</option>
+                <option>NARANJA</option>
+                <option>TIENDAS</option>
+                <% break;
+                case "NARANJA":%>
+                <option>MAIZ</option>
+                <option>TOMATE</option>
+                <option>CAMIONES</option>
+                <option selected>NARANJA</option>
+                <option>TIENDAS</option>
+                <% break;
+                case "TIENDAS":%>
+                <option>MAIZ</option>
+                <option>TOMATE</option>
+                <option>CAMIONES</option>
+                <option>NARANJA</option>
+                <option selected>TIENDAS</option>
+                <% } %>
+              </select>
+              <label for="exampleFormControlSelect2">Unidades</label>
+              <select class="form-control" id="UNIDAD">
+                <% switch(resultado.formato[0].UNIDAD){
+                case "UNIDADES": %>
+                <option selected>UNIDADES</option>
+                <option>TONELADAS</option>
+                <option>LITROS</option>
+                <option>KILOS</option>
+                <option>COSTALES</option>
+                <% break;
+                case "TONELADAS": %>
+                <option>UNIDADES</option>
+                <option selected>TONELADAS</option>
+                <option>LITROS</option>
+                <option>KILOS</option>
+                <option>COSTALES</option>
+                <% break;
+                case "LITROS":%>
+                <option>UNIDADES</option>
+                <option>TONELADAS</option>
+                <option  selected>LITROS</option>
+                <option>KILOS</option>
+                <option>COSTALES</option>
+                <% break;
+                case "KILOS":%>
+                <option>UNIDADES</option>
+                <option>TONELADAS</option>
+                <option>LITROS</option>
+                <option selected>KILOS</option>
+                <option>COSTALES</option>
+                <% break;
+                case "COSTALES":%>
+                <option>UNIDADES</option>
+                <option>TONELADAS</option>
+                <option>LITROS</option>
+                <option>KILOS</option>
+                <option selected>COSTALES</option>
+                <% } %>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect2">Cantidad</label>
+              <input type="number" class="form-control" id="CANTIDAD" value="<%=resultado.formato[0].CANTIDAD%>">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Comentarios</label>
+              <textarea class="form-control" id="COMENTARIOS" rows="3" placeholder=""><%=resultado.formato[0].COMENTARIOS%></textarea>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlFile1">Adjuntar Imagen</label>
+              <input type="file" class="form-control-file" id="IMAGEN" onchange="cargarImagen();return false">
+            </div>
+            <div id="imagen_existente" hidden><%= resultado.formato[0].FIRMA%></div>
+            <% if(resultado.formato[0].IMAGEN!==""&& resultado.formato[0].IMAGEN!=="undefined"){ %>
+            <img id="imagen_rendereada" src="<%= resultado.formato[0].IMAGEN %>" width="100px" height="100px">
+            <% } %>
+            <div class="form-group">
+              <label for="exampleFormControlFile1">Firma</label>
+              <br>
+              <canvas id="signature-pad" class="signature-pad" width=400 height=200></canvas>
+              <br>
+              <a class="btn btn-" onclick="BorrarFirma(); return false;" id="clear">Reintentar</a>
+              <% if(resultado.formato[0].FIRMA!==""&& resultado.formato[0].FIRMA!=="undefined"){ %>
+              <br>
+              <br>
+              <label>Firma actual del documento</label>
+              <br>
+              <img id="firma_rendereada" src="<%= resultado.formato[0].FIRMA %>" width="400px" height="200px">
+              <% } %>
+              <div id="firma_existente" hidden><%= resultado.formato[0].FIRMA%></div>
+              <br>
+            </div>
+          </form>
+          <br>
+          <div class="text-center editor">
+            <button onclick="guardar(); return false;" class="btn btn-primary btn-lg" role="button" aria-disabled="true">Guardar</button>
+            <a onclick="window.history.go(-1); return false;" class="btn btn-danger btn-lg" role="button" aria-disabled="true">Cancelar</a>
+            <a onclick="ImprimirPDF(); return false;" class="btn btn-warning btn-lg" role="button" aria-disabled="true">Imprimir</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+    <script type="text/javascript" src="/js/formato.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  </body>
+  </html>

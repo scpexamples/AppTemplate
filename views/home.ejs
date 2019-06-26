@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="/css/home.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+
+    <title>Inicio</title>
+  </head>
+  <body>
+        <!-- inicio del navbar -->
+
+    <nav class="navbar navbar-expand-md ">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="/">Inicio</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/Mapa">Mapa en Vivo</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/Ticket">Crear Ticket</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/Mercancias">Desc. Materiales</a>
+              </li>
+              <% if(user.puesto.includes("Director")) {%>
+              <li class="nav-item">
+                  <a class="nav-link" href="/Reporte">Reporte de Negocio</a>
+              </li>
+              <% } %>
+
+          </ul>
+      </div>
+      <div class="mx-auto order-0">
+          <a class="navbar-brand mx-auto" href="/"><img src="images/logo2.png" height="50" width="150"></a>
+          <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="/logout">Salir</a>
+              </li>
+          </ul>
+      </div>
+  </nav>
+
+          <!-- fin del navbar -->
+
+
+
+ <div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <span id="foto">
+      <img class="rounded-circle" src="" id="ImagenUsuario" alt="" width="140" height="140">
+      </span>
+            <button onclick="resetImage();return false" data-toggle="modal" data-target="#modalUploadPhoto" role="button" class="btn btn-sm"><i class="fas fa-edit" ></i></button>
+            <h3><span id="NombreUsuario"><%=user.nombre%> <%=user.apellido%></span></h3>
+            <p id="CorreoUsuario"><%= user.username%></p>
+            <p id="NivelUsuario"><i class="fas fa-chess-king"></i>  <%= user.puesto%> </span></p>
+            <p id="PuntosUsuario">800 pts</p>
+    </div>
+    <div class="col-lg-9">
+        <h3>Solicitudes Abiertas</h3>
+
+        <div class="table-responsive">
+        <table class="table table-hover" id="tabla_solicitudes_abiertas">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Bodega</th>
+              <th scope="col">Ubicación</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Formato</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+
+        <br>
+        <h3>Histórico de Solicitudes</h3>
+        <br>
+
+        <div class="table-responsive">
+        <table class="table table-hover" id="tabla_solicitudes_cerradas">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Bodega</th>
+              <th scope="col">Ubicación</th>
+              <th scope="col">Tipo</th>
+              <th scope="col">Formato</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!-- Contenido Dinámico que agrega el JS -->
+          </tbody>
+        </table>
+        </div>
+          
+        <br>
+        <h3>Mis Alertas</h3>
+        <br>
+
+        <div class="table-responsive">
+        <table class="table table-hover" id="tabla_alertas">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Bodega</th>
+              <th scope="col">Ubicación</th>
+              <th scope="col">Estatus</th>
+              <th scope="col">Formato</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!-- Contenido Dinámico que agrega el JS -->
+          </tbody>
+        </table>
+        </div>
+
+    </div>
+  </div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="js/home.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+  </body>
+</html>
+
+  <script>
+    if (screen && screen.width > 480) {
+      document.write("<script src='/js/webchat_orig.js' channelId='4763f012-ac91-4214-8881-09c9f0fc9994' token='' id='cai-webchat'><\/script>");
+    } else {
+      document.write("<script src='/js/webchat_orig.js' channelId='4763f012-ac91-4214-8881-09c9f0fc9994' token='' id='cai-webchat'><\/script>");
+    }
+  </script>

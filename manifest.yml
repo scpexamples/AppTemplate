@@ -1,0 +1,9 @@
+---
+applications:
+- name: portal
+  memory: 128M
+  instances: 1
+  disk_quota: 128M
+  command: node portal.js
+  buildpacks: 
+      - nodejs_buildpack

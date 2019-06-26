@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Signin</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/bestrunlogo.png">
+
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/signin.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap core CSS -->
+    <link href="http://getbootstrap.com/docs/4.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <link href="http://getbootstrap.com/docs/4.2/examples/sign-in/signin.css" rel="stylesheet">
+</head>
+<body class="text-center">
+	<form action="/register" method="POST" class="form-signin">
+        <img class="mb-4" src="/images/logo2.png" alt="" width="260" height="130">
+        <h1 class="h3 mb-3 font-weight-normal"> Llena la siguiente forma para generar un usuario</h1>
+        <br>
+        <input type="text" class="form-control" name="username" placeholder="Correo">
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre">
+        <input type="text" class="form-control" name="apellido" placeholder="Apellido">
+        <input type="text" class="form-control" name="puesto" placeholder="Puesto">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+        <div>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block">Registrar!</button>
+        </div>
+
+        <p class="mt-5 mb-3 text-muted">&copy; 2019-2020</p>
+
+    </form>
+</body>
+</html>

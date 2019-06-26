@@ -1,0 +1,17 @@
+form{
+	display: inline !important;
+}
+
+canvas{
+	border-style: solid;
+	border-color: gray;
+}
+
+.btn-{
+	border-color: rgb(3,101,62) !important;
+	background-color: rgb(3,101,62) !important;
+}
+
+a.btn{
+	color: white !important;
+}

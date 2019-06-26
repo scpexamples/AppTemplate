@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" type="text/css" href="/css/home.css">
+  <link rel="stylesheet" type="text/css" href="/css/reporte.css">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/logo.png">
+
+  <title>Listado de Materiales</title>
+</head>
+<body>
+  <!-- inicio del navbar -->
+
+  <nav class="navbar navbar-expand-md ">
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Mapa">Mapa en Vivo</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Ticket">Crear Ticket</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/Mercancias">Desc. Materiales</a>
+        </li>
+        <% if(user.puesto.includes("Director")) {%>
+        <li class="nav-item active">
+          <a class="nav-link" href="/Reporte">Listado de Materiales del ECC</a>
+        </li>
+        <% } %>
+
+      </ul>
+    </div>
+    <div class="mx-auto order-0">
+      <a class="navbar-brand mx-auto" href="/"><img src="images/logo2.png" height="50" width="150"></a>
+      <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Salir</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- fin del navbar -->
+
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h3 >Descripción de Materiales</h3>
+        <br>
+        <div class="text-left">
+          <label>Selecciona el tipo de tabla:</label>
+          <button id="boton_tabla" onclick="consultarMateriales(); return false;" class="btn btn-success">Tabla Física</button>
+          <br>
+          <br>
+          <label>Número de materiales: </label>
+          <input type="text" name="valor" id="valor" value="50">
+          <br>
+          <button id="buscar" onclick="Buscar(); return false;" class="btn btn-secondary">Buscar</button>
+        </div>
+        <br>
+        <div class="table-responsive text-left">
+          <table class="table table-hover" id="tabla_mercancias">
+            <thead>
+              <tr>
+                <th scope="col">GenID</th>
+                <th scope="col">MAKTG</th>
+                <th scope="col">MAKTX</th>
+                <th scope="col">MANDT</th>
+                <th scope="col">MATNR</th>
+                <th scope="col">SPRAS</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="js/mercancias.js"></script>
+</body>
+</html>
+
+<script>
+  if (screen && screen.width > 480) {
+    document.write("<script src='/js/webchat_orig.js' channelId='4763f012-ac91-4214-8881-09c9f0fc9994' token='' id='cai-webchat'><\/script>");
+  }
+</script>

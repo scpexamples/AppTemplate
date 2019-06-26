@@ -1,0 +1,16 @@
+#map {
+	height: 100% !important;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+	height: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.container-fluid{
+	margin-right: 0 !important;
+	margin-left: 0 !important;
+	max-width: none !important;
+	margin-top: 0 !important;
+}

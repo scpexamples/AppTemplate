@@ -1,0 +1,15 @@
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+.btn-{
+	border-color: rgb(3,101,62) !important;
+	background-color: rgb(3,101,62) !important;
+}

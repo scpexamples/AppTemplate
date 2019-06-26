@@ -1,0 +1,8 @@
+input{
+	width: 360px !important;
+}	
+
+.btn-{
+	border-color: rgb(3,101,62) !important;
+	background-color: rgb(3,101,62) !important;
+}
